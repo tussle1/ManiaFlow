@@ -1,0 +1,171 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Motion
+
+   Rules this file lives by:
+     • animate only `transform` and `opacity` — both stay on the compositor,
+       so nothing here triggers layout or paint during a transition
+     • one duration scale and one easing family, taken from tokens.css
+     • every animation is multiplied by `--motion`, which the user's
+       prefers-reduced-motion setting and the in-app animation preference
+       both drive. `--motion: 0` collapses all of it to a single frame.
+     • nothing loops unless it carries information (a spinner, a live dot)
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── page transitions ─────────────────────────────────────────────────
+   The outgoing page fades and lifts slightly; the incoming one settles
+   into place. Both are short — a page change should feel instant, just
+   not abrupt. */
+
+.page-enter {
+  animation: page-in calc(var(--d-slow) * var(--motion)) var(--ease-out) both;
+}
+.page-exit {
+  animation: page-out calc(var(--d-fast) * var(--motion)) var(--ease-in) both;
+  pointer-events: none;
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes page-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-4px); }
+}
+
+/* ── staggered entrances ──────────────────────────────────────────────
+   Cards and rows arrive in sequence. The delay is a custom property so
+   a list can set it per child without touching this file. */
+
+.stagger > * {
+  animation: rise-in calc(var(--d-slow) * var(--motion)) var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 26ms * var(--motion));
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rise-in { animation: rise-in calc(var(--d-slow) * var(--motion)) var(--ease-out) both; }
+
+/* ── fade, used where a transform would be noise ────────────────────── */
+
+.fade-in  { animation: fade-in calc(var(--d-base) * var(--motion)) var(--ease-out) both; }
+.fade-out { animation: fade-out calc(var(--d-fast) * var(--motion)) var(--ease-in) both; }
+@keyframes fade-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+
+/* ── pop: tooltips, badges and anything that appears in place ───────── */
+
+.pop-in { animation: pop-in calc(var(--d-base) * var(--motion)) var(--ease-spring) both; }
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── slide-in from the right, for side panels ───────────────────────── */
+
+.slide-in-right { animation: slide-in-right calc(var(--d-slow) * var(--motion)) var(--ease-out) both; }
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── a value that just changed: one brief accent flash, then nothing ── */
+
+.value-flash { animation: value-flash calc(620ms * var(--motion)) var(--ease-out); }
+@keyframes value-flash {
+  0%   { color: var(--accent-bright); }
+  100% { color: inherit; }
+}
+
+/* ── shake: only for a rejected action, and only once ───────────────── */
+
+.shake { animation: shake calc(340ms * var(--motion)) var(--ease-in-out); }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  22%      { transform: translateX(-4px); }
+  46%      { transform: translateX(3px); }
+  72%      { transform: translateX(-2px); }
+}
+
+/* ── the note column glow while an input is held ────────────────────── */
+
+.lane-flash { animation: lane-flash calc(220ms * var(--motion)) var(--ease-out); }
+@keyframes lane-flash {
+  from { opacity: 0.85; }
+  to   { opacity: 0; }
+}
+
+/* ── progress indeterminate: a short bar sweeping, for unknown waits ── */
+
+.indeterminate {
+  position: relative;
+  overflow: hidden;
+  height: 2px;
+  background: var(--bg-active);
+  border-radius: var(--r-pill);
+}
+.indeterminate::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 34%;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  animation: indeterminate calc(1200ms * var(--motion)) var(--ease-in-out) infinite;
+}
+@keyframes indeterminate {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(320%); }
+}
+
+/* ── skeleton shimmer lives in components.css; this is its pause ────── */
+
+/* ── reduced motion: the hard stop ────────────────────────────────────
+   When --motion is 0 every duration above collapses to 0ms, which the
+   browser treats as an instant style change. This block additionally
+   removes the animations that would otherwise still run once, and stops
+   anything that loops. */
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) *,
+  :root:not([data-motion="full"]) *::before,
+  :root:not([data-motion="full"]) *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  :root:not([data-motion="full"]) .spinner,
+  :root:not([data-motion="full"]) .indeterminate::after,
+  :root:not([data-motion="full"]) .skeleton,
+  :root:not([data-motion="full"]) .dot--live::after {
+    /* A loading indicator must still be perceptible without moving. */
+    animation: none !important;
+    opacity: 0.75;
+  }
+  :root:not([data-motion="full"]) .spinner {
+    border-top-color: var(--accent);
+    border-right-color: var(--accent);
+  }
+}
+
+[data-motion="reduced"] *,
+[data-motion="reduced"] *::before,
+[data-motion="reduced"] *::after {
+  animation-duration: 1ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 1ms !important;
+}
+[data-motion="reduced"] .spinner,
+[data-motion="reduced"] .indeterminate::after,
+[data-motion="reduced"] .skeleton,
+[data-motion="reduced"] .dot--live::after {
+  animation: none !important;
+  opacity: 0.75;
+}
+
+/* Smooth scrolling inside the main region, when the user has not asked us to stop. */
+@media (prefers-reduced-motion: no-preference) {
+  .app__main { scroll-behavior: smooth; }
+}

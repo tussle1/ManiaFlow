@@ -1,0 +1,53 @@
+osu file format v14
+
+[General]
+AudioFilename: audio.mp3
+AudioLeadIn: 0
+PreviewTime: -1
+Mode: 3
+
+[Editor]
+Bookmarks: 0
+DistanceSpacing: 1.2
+BeatDivisor: 4
+GridSize: 16
+
+[Metadata]
+Title:ManiaFlow Test
+TitleUnicode:ManiaFlow Test
+Artist:ManiaFlow
+ArtistUnicode:ManiaFlow
+Creator:ManiaFlow
+Version:Corrupt lines
+Source:ManiaFlow
+Tags:test fixture
+BeatmapID:1000
+BeatmapSetID:2000
+
+[Difficulty]
+HPDrainRate:5
+CircleSize:4
+OverallDifficulty:5
+ApproachRate:5
+SliderMultiplier:1.4
+SliderTickRate:1
+
+[Events]
+
+[TimingPoints]
+0,500,4,2,0,70,1,0
+not-a-number,500,4,2,0,70,1,0
+2000,0,4,2,0,70,1,0
+999999999,500,4,2,0,70,1,0
+4000
+5000,-100,4,2,0,70,0,0
+
+[HitObjects]
+64,192,1000,1,0,0:0:0:0:
+abc,192,2000,1,0,0:0:0:0:
+192,192,3000
+320,192,999999999,1,0,0:0:0:0:
+448,192,4000,128,0,notanumber:0:0:0:0:
+64,192,5000,1,0,0:0:0:0:
+192,192,6000,128,0,5500:0:0:0:0:
+192,192,5600,1,0,0:0:0:0:

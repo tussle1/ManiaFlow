@@ -1,0 +1,29 @@
+{
+  "note": "Sample charts for trying ManiaFlow without a beatmap of your own. They are generated patterns, not real songs, and they carry no audio — a preview runs on ManiaFlow's own clock. Every one of them parses to exactly the same notes as Ashtonk!mania's own parser.",
+  "charts": [
+    {
+      "file": "neon-drift-4k.osu",
+      "title": "Neon Drift",
+      "version": "Stream 4K",
+      "keys": 4,
+      "bpm": 120,
+      "summary": "An everyday stream chart: 1/2 and 1/4 taps, a few chords and short holds. Good first look at the Practice Studio."
+    },
+    {
+      "file": "velocity-study-7k.osu",
+      "title": "Velocity Study",
+      "version": "Timing 7K",
+      "keys": 7,
+      "bpm": 140,
+      "summary": "Three BPM sections and five scroll-velocity changes, built to exercise the Timing Lab's scroll and beat-snap analysis."
+    },
+    {
+      "file": "hold-patterns-4k.osu",
+      "title": "Hold Patterns",
+      "version": "Long Notes 4K",
+      "keys": 4,
+      "bpm": 90,
+      "summary": "Long notes stacked, staggered and layered across every lane, for studying hold duration and release timing."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+osu file format v14
+
+[General]
+AudioFilename: audio.mp3
+AudioLeadIn: 0
+PreviewTime: -1
+Mode: 3
+
+[Editor]
+Bookmarks: 0
+DistanceSpacing: 1.2
+BeatDivisor: 4
+GridSize: 16
+
+[Metadata]
+Title:ManiaFlow Test
+TitleUnicode:ManiaFlow Test
+Artist:ManiaFlow
+ArtistUnicode:ManiaFlow
+Creator:ManiaFlow
+Version:Sliders 5K
+Source:ManiaFlow
+Tags:test fixture
+BeatmapID:1000
+BeatmapSetID:2000
+
+[Difficulty]
+HPDrainRate:5
+CircleSize:5
+OverallDifficulty:5
+ApproachRate:5
+SliderMultiplier:1.8
+SliderTickRate:1
+
+[Events]
+
+[TimingPoints]
+0,500,4,2,0,70,1,0
+8000,-80,4,2,0,70,0,0
+
+[HitObjects]
+51,192,1000,2,0,L|200|192,1,120,0,0:0:0:0:
+153,192,3000,2,0,B|250|150|350|250,2,300,0,0:0:0:0:
+256,192,8000,2,0,L|400|192,1,150,0,0:0:0:0:
+358,192,11000,2,0,L|450|192,3,90,0,0:0:0:0:
+460,192,14000,2,0,L|460|192,1,0,0,0:0:0:0:
+51,192,16000,128,0,17200:0:0:0:0:

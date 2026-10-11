@@ -1,0 +1,26 @@
+{
+  "name": "maniaflow",
+  "version": "1.0.0",
+  "description": "A local practice, chart-analysis and timing tool for Ashtonk!mania, with an honest in-page bridge and a raw keyboard input system.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "test": "node --test \"tests/*.test.js\"",
+    "check": "node scripts/check.js",
+    "verify": "npm run check && npm test",
+    "test:watch": "node --test --watch \"tests/*.test.js\""
+  },
+  "keywords": [
+    "osu-mania",
+    "rhythm-game",
+    "practice",
+    "timing",
+    "chart-analysis"
+  ],
+  "license": "UNLICENSED"
+}

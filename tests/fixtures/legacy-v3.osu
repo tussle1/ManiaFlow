@@ -1,0 +1,44 @@
+osu file format v3
+
+[General]
+AudioFilename: audio.mp3
+AudioLeadIn: 0
+PreviewTime: -1
+Mode: 3
+
+[Editor]
+Bookmarks: 0
+DistanceSpacing: 1.2
+BeatDivisor: 4
+GridSize: 16
+
+[Metadata]
+Title:ManiaFlow Test
+TitleUnicode:ManiaFlow Test
+Artist:ManiaFlow
+ArtistUnicode:ManiaFlow
+Creator:ManiaFlow
+Version:Legacy v3
+Source:ManiaFlow
+Tags:test fixture
+BeatmapID:1000
+BeatmapSetID:2000
+
+[Difficulty]
+HPDrainRate:5
+CircleSize:4
+OverallDifficulty:5
+ApproachRate:5
+SliderMultiplier:1.4
+SliderTickRate:1
+
+[Events]
+2,9000,10000
+
+[TimingPoints]
+0,500,4,2,0,70,1,0
+
+[HitObjects]
+64,192,1000,1,0,0:0:0:0:
+192,192,2000,128,0,3000:0:0:0:0:
+320,192,9000,1,0,0:0:0:0:

@@ -1,0 +1,50 @@
+osu file format v14
+
+[General]
+AudioFilename: audio.mp3
+AudioLeadIn: 0
+PreviewTime: -1
+Mode: 3
+
+[Editor]
+Bookmarks: 0
+DistanceSpacing: 1.2
+BeatDivisor: 4
+GridSize: 16
+
+[Metadata]
+Title:ManiaFlow Test
+TitleUnicode:ManiaFlow Test
+Artist:ManiaFlow
+ArtistUnicode:ManiaFlow
+Creator:ManiaFlow
+Version:Spinners 8K
+Source:ManiaFlow
+Tags:test fixture
+BeatmapID:1000
+BeatmapSetID:2000
+
+[Difficulty]
+HPDrainRate:6
+CircleSize:8
+OverallDifficulty:7
+ApproachRate:5
+SliderMultiplier:1.4
+SliderTickRate:1
+
+[Events]
+
+[TimingPoints]
+0,461,4,1,0,60,1,0
+
+[HitObjects]
+256,192,5000,8,4,7000,0:0:0:0:
+256,192,9000,8,4,9800,0:0:0:0:
+256,192,14000,8,0,14050,0:0:0:0:
+256,192,18000,8,8,20000,0:0:0:0:
+64,192,21000,1,0,0:0:0:0:
+256,192,22000,8,4,22900,0:0:0:0:
+256,192,26000,8,0,26100,0:0:0:0:
+256,192,30000,8,0,30000,0:0:0:0:
+256,192,30050,8,0,31500,0:0:0:0:
+192,192,33000,8,4,34000,0:0:0:0:

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-density="comfortable" data-accent="violet">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="ManiaFlow — a local practice, chart-analysis and timing tool for Ashtonk!mania.">
+<title>ManiaFlow</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d0f12'/%3E%3Cg fill='%237c5cff'%3E%3Crect x='7' y='15' width='3.4' height='10' rx='1.7'/%3E%3Crect x='12.6' y='9' width='3.4' height='16' rx='1.7'/%3E%3Crect x='18.2' y='12' width='3.4' height='13' rx='1.7'/%3E%3Crect x='23.8' y='6' width='3.4' height='19' rx='1.7'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="./src/styles/tokens.css">
+<link rel="stylesheet" href="./src/styles/global.css">
+<link rel="stylesheet" href="./src/styles/components.css">
+<link rel="stylesheet" href="./src/styles/animations.css">
+</head>
+<body>
+  <div id="app" class="app" aria-busy="true">
+    <div class="boot">
+      <div class="boot__mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <p class="boot__label">ManiaFlow</p>
+    </div>
+  </div>
+  <noscript>
+    <p style="padding:24px;font:14px system-ui;color:#eceef2;background:#08090b">
+      ManiaFlow is a JavaScript application and needs scripting enabled.
+    </p>
+  </noscript>
+  <script type="module" src="./src/index.js"></script>
+</body>
+</html>

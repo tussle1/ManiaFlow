@@ -1,0 +1,245 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   ManiaFlow design tokens
+
+   One source of truth for every colour, space, radius, easing and duration in
+   the application. Nothing in components.css or in JS hard-codes a value that
+   belongs here — that is what keeps six screens looking like one product.
+
+   Theme model
+     background  four levels of charcoal, each one step lighter than the last,
+                 so panels separate by value rather than by borders
+     foreground  three levels, from primary text to metadata
+     accent      one restrained hue, driven by --accent-h so the accent picker
+                 changes a single number and the whole app follows
+     state       success / warning / danger, all desaturated to sit in the same
+                 family as the neutrals rather than shouting
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── surfaces ── */
+  --bg-app:      #08090b;   /* the window itself: near-black */
+  --bg-sunken:   #0b0c0f;   /* wells, code blocks, the chart canvas surround */
+  --bg-sidebar:  #0c0e11;
+  --bg-panel:    #111317;   /* cards and panels */
+  --bg-raised:   #16191f;   /* inputs, rows, popover bodies */
+  --bg-hover:    #1c2027;
+  --bg-active:   #232830;
+
+  /* ── lines: used sparingly, only where a value change is not enough ── */
+  --line-faint:  rgba(255, 255, 255, 0.055);
+  --line-soft:   rgba(255, 255, 255, 0.085);
+  --line-solid:  rgba(255, 255, 255, 0.13);
+  --line-strong: rgba(255, 255, 255, 0.2);
+
+  /* ── text ── */
+  --fg:          #eceef2;
+  --fg-dim:      #a4abb7;
+  --fg-muted:    #757d8a;
+  --fg-faint:    #565d69;
+  --fg-invert:   #08090b;
+
+  /* ── accent: a single hue number drives everything ── */
+  --accent-h: 258;
+  --accent-s: 88%;
+  --accent-l: 67%;
+  --accent:            hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+  --accent-bright:     hsl(var(--accent-h) var(--accent-s) 76%);
+  --accent-deep:       hsl(var(--accent-h) 62% 46%);
+  --accent-wash:       hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.1);
+  --accent-wash-2:     hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.16);
+  --accent-line:       hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.34);
+  --accent-on:         #ffffff;
+
+  /* ── state ── */
+  --ok:        #5ecf92;
+  --ok-wash:   rgba(94, 207, 146, 0.12);
+  --warn:      #e3b268;
+  --warn-wash: rgba(227, 178, 104, 0.12);
+  --danger:    #e97373;
+  --danger-wash: rgba(233, 115, 115, 0.12);
+  --info:      #6cb6e8;
+  --info-wash: rgba(108, 182, 232, 0.12);
+
+  /* ── chart semantics: notes, holds, misses ── */
+  --note:        hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+  --note-hold:   hsl(var(--accent-h) 62% 52%);
+  --note-past:   #3a4048;
+  --note-sim:    #d9a441;
+  --grid:        rgba(255, 255, 255, 0.045);
+  --grid-major:  rgba(255, 255, 255, 0.09);
+  --receptor:    rgba(255, 255, 255, 0.24);
+
+  /* ── spacing: a 4px base, scaled by density ── */
+  --sp-unit: 4px;
+  --sp-1:  calc(var(--sp-unit) * 1);   /*  4 */
+  --sp-2:  calc(var(--sp-unit) * 2);   /*  8 */
+  --sp-3:  calc(var(--sp-unit) * 3);   /* 12 */
+  --sp-4:  calc(var(--sp-unit) * 4);   /* 16 */
+  --sp-5:  calc(var(--sp-unit) * 5);   /* 20 */
+  --sp-6:  calc(var(--sp-unit) * 6);   /* 24 */
+  --sp-8:  calc(var(--sp-unit) * 8);   /* 32 */
+  --sp-10: calc(var(--sp-unit) * 10);  /* 40 */
+  --sp-14: calc(var(--sp-unit) * 14);  /* 56 */
+
+  --page-pad: var(--sp-6);
+  --page-max: 1360px;
+  --sidebar-w: 232px;
+  --topbar-h: 54px;
+  --statusbar-h: 30px;
+
+  /* ── radii: refined, never bubbly ── */
+  --r-xs:   4px;
+  --r-sm:   6px;
+  --r-md:   9px;
+  --r-lg:   12px;
+  --r-xl:   16px;
+  --r-pill: 999px;
+
+  /* ── elevation: two soft layers, no hard black shadows ── */
+  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --sh-2: 0 2px 6px rgba(0, 0, 0, 0.34), 0 1px 2px rgba(0, 0, 0, 0.28);
+  --sh-3: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 3px 10px rgba(0, 0, 0, 0.34);
+  --sh-4: 0 28px 64px -16px rgba(0, 0, 0, 0.72), 0 6px 18px rgba(0, 0, 0, 0.4);
+  --sh-inset: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  --ring: 0 0 0 2px var(--bg-app), 0 0 0 4px var(--accent-line);
+
+  /* ── typography: system stack, no webfont, so nothing blocks first paint ── */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code",
+               "Roboto Mono", Menlo, Consolas, monospace;
+
+  --fs-2xs: 10.5px;
+  --fs-xs:  11.5px;
+  --fs-sm:  12.5px;
+  --fs-md:  13.5px;
+  --fs-lg:  15px;
+  --fs-xl:  17px;
+  --fs-2xl: 21px;
+  --fs-3xl: 27px;
+
+  --lh-tight: 1.25;
+  --lh-body:  1.5;
+  --lh-loose: 1.65;
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  --tracking-tight: -0.014em;
+  --tracking-wide:   0.055em;
+
+  /* ── motion: one family of curves, one family of durations ── */
+  --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);      /* entrances, releases */
+  --ease-in:      cubic-bezier(0.55, 0, 1, 0.45);      /* exits */
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);      /* moves, resizes */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);       /* everything else */
+  --ease-spring:  cubic-bezier(0.34, 1.36, 0.64, 1);   /* press feedback only */
+
+  --d-instant: 70ms;
+  --d-fast:    120ms;
+  --d-base:    180ms;
+  --d-slow:    260ms;
+  --d-slower:  380ms;
+
+  /* A single multiplier so "reduce motion" and the animation setting agree. */
+  --motion: 1;
+
+  /* ── z-order ── */
+  --z-sidebar:  20;
+  --z-topbar:   30;
+  --z-sticky:   40;
+  --z-dropdown: 60;
+  --z-tooltip:  80;
+  --z-toast:    90;
+  --z-dialog:   100;
+}
+
+/* ── accent presets: one hue each, chosen to stay legible on charcoal ── */
+[data-accent="violet"]  { --accent-h: 258; --accent-s: 88%; --accent-l: 67%; }
+[data-accent="ice"]     { --accent-h: 199; --accent-s: 86%; --accent-l: 62%; }
+[data-accent="mint"]    { --accent-h: 162; --accent-s: 62%; --accent-l: 55%; }
+[data-accent="amber"]   { --accent-h: 38;  --accent-s: 88%; --accent-l: 62%; }
+[data-accent="rose"]    { --accent-h: 344; --accent-s: 78%; --accent-l: 67%; }
+[data-accent="slate"]   { --accent-h: 215; --accent-s: 16%; --accent-l: 66%; }
+
+/* ── the light theme is a deliberate inversion, not a washed-out dark one ── */
+[data-theme="light"] {
+  --bg-app:     #f4f5f7;
+  --bg-sunken:  #e9ebef;
+  --bg-sidebar: #eef0f3;
+  --bg-panel:   #ffffff;
+  --bg-raised:  #f7f8fa;
+  --bg-hover:   #eceef2;
+  --bg-active:  #e2e5ea;
+
+  --line-faint:  rgba(15, 20, 30, 0.055);
+  --line-soft:   rgba(15, 20, 30, 0.09);
+  --line-solid:  rgba(15, 20, 30, 0.15);
+  --line-strong: rgba(15, 20, 30, 0.24);
+
+  --fg:       #14171c;
+  --fg-dim:   #4d545f;
+  --fg-muted: #6d7480;
+  --fg-faint: #8d94a0;
+  --fg-invert: #ffffff;
+
+  --accent-l: 52%;
+  --accent-on: #ffffff;
+
+  --grid:       rgba(15, 20, 30, 0.06);
+  --grid-major: rgba(15, 20, 30, 0.12);
+  --receptor:   rgba(15, 20, 30, 0.3);
+  --note-past:  #c3c8d0;
+
+  --sh-1: 0 1px 2px rgba(15, 20, 30, 0.07);
+  --sh-2: 0 2px 6px rgba(15, 20, 30, 0.08), 0 1px 2px rgba(15, 20, 30, 0.05);
+  --sh-3: 0 12px 28px -8px rgba(15, 20, 30, 0.18), 0 3px 8px rgba(15, 20, 30, 0.07);
+  --sh-4: 0 24px 56px -16px rgba(15, 20, 30, 0.24), 0 6px 16px rgba(15, 20, 30, 0.1);
+  --sh-inset: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --ring: 0 0 0 2px var(--bg-app), 0 0 0 4px var(--accent-line);
+}
+
+/* ── interface density ── */
+[data-density="compact"] {
+  --sp-unit: 3.25px;
+  --page-pad: var(--sp-5);
+  --sidebar-w: 204px;
+  --topbar-h: 46px;
+  --fs-md: 12.75px;
+  --fs-sm: 11.75px;
+  --fs-lg: 14px;
+  --fs-xl: 16px;
+  --fs-2xl: 19px;
+}
+[data-density="cozy"] {
+  --sp-unit: 4.75px;
+  --sidebar-w: 248px;
+  --topbar-h: 58px;
+  --fs-md: 14px;
+  --fs-lg: 15.5px;
+}
+
+/* ── animation preference: 0 collapses every transition to nothing ── */
+[data-motion="reduced"] { --motion: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) { --motion: 0; }
+}
+
+/* ── a high-contrast option, for readability rather than decoration ── */
+[data-contrast="high"] {
+  --fg:       #ffffff;
+  --fg-dim:   #d3d8e0;
+  --fg-muted: #aeb5c0;
+  --line-soft:  rgba(255, 255, 255, 0.18);
+  --line-solid: rgba(255, 255, 255, 0.28);
+}
+[data-theme="light"][data-contrast="high"] {
+  --fg:       #000000;
+  --fg-dim:   #23282f;
+  --fg-muted: #3d444e;
+  --line-soft:  rgba(15, 20, 30, 0.2);
+  --line-solid: rgba(15, 20, 30, 0.32);
+}
